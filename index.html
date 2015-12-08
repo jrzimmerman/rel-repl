@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head><title>Relativistic Replication!</title><meta charset='utf-8'><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link href='big.css' rel='stylesheet' type='text/css' />
+<style>
+  .iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hiframe iframe {
+    position: absolute;
+    top: calc(0 - 200px);
+    
+      width: calc(100% + 1000px);
+      min-height: calc(100% + 800px);
+  }
+  .computers {
+    background-image: url(./images/computers.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .lockstep {
+    background-image: url(./images/lockstep.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .walk-nolag {
+    background-image: url(./images/walk-nolag.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .walk-lag {
+    background-image: url(./images/walk-lag.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .walk-damped {
+    background-image: url(./images/walk-damped.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .walk-severe-lag {
+    background-image: url(./images/walk-severe-lag.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .player1 {
+    background-image: url(./images/player1.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .player2 {
+    background-image: url(./images/player2.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .player1hit {
+    background-image: url(./images/player1hit.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .player1miss {
+    background-image: url(./images/player1miss.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .consistent {
+    background-image: url(./images/consistent.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .inconsistent {
+    background-image: url(./images/inconsistent.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+  .bullet-time {
+    background-image: url(./images/bullet-time.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 1px;
+    background-color: white;
+    text-shadow: 3px 3px 5px #222;
+  }
+
+</style>
+<script src='big.js'></script>
+</head><body>
+
+<div>Relativistic Replication!<br>Justin Zimmerman<br><em>HRR9 2015</em></div>
+<div> Inspired by Mikola Lysenko's 2014 talk at Nodeconf.eu <br /><a href='https://github.com/mikolalysenko/nodeconfeu2014-slides'>https://github.com/mikolalysenko/nodeconfeu2014-slides</a></div>
+<div>wait.. wut?</div>
+<div>Realtime Multiplayer Games on the Web</div>
+<div>The tech is here! <em>WebRTC</em> <strong>WebGL</strong> <em>WebSockets</em> <strong>WebAudio</strong></div>
+<div>Why isn't <em>anyone</em> building them?</div>
+<div>Online multiplayer games are <strong>HARD</strong></div>
+<div><em>Graphics</em> + <strong>Distributed Sytems</strong> = <em>Hard Problems</em></div>
+<div>Multiplayer games as <strong>distributed replicas</strong>, multiple machines <em>one shared state</em></div>
+<div data-bodyclass='computers'></div>
+<div> Issues in <em>Distributed Systems</em></div>
+<div> New problems: <em>Byzantine failures</em> <br /> Of, relating to, or characterized by intrigue; scheming or devious</div>
+<div> Byzantine failures<strong>AKA Cheating</strong></div>
+<div> Players are <em>smart</em>, and want to <strong>break everything</strong></div>
+<div> Other problems: <em>Bandwidth</em>, <strong>Latency</strong></div>
+<div> Easy Solution? <br /> use <em>client-server</em> only one master replica</div>
+<div> Better Solution? <br /> use <em>peer-2-peer</em> systems</div>
+<div> Switching gears: <br /> Lets talk about syncronization</div>
+<div> <strong>Lock Step Syncronization</strong> <br /> <em>strict linearization</em> <br />All players sync on each tick</div>
+<div> <em>Strongest</em> possible model of consistency</div>
+<div data-bodyclass='lockstep'></div>
+<div> Unless your building a card game, <br />this kind of sucks.</div>
+<div> <strong>Dead Reckoning</strong><br /> eventual consistency</div>
+<div> <em>Apply inputs immediately</em><br /> <strong>Predict remote events</strong><br /> <em>correct errors</em></div>
+<div> Examples</div>
+<div> Lag free / Lock Step </div>
+<div data-bodyclass='walk-nolag'></div>
+<div> Dead Reckoning - No Correction </div>
+<div data-bodyclass='walk-lag'></div>
+<div> Dead Reckoning - With Corrections </div>
+<div data-bodyclass='walk-damped'></div>
+<div> Dead Reckoning - With Severe Lag </div>
+<div data-bodyclass='walk-severe-lag'></div>
+<div> <em> Pros:</em><br /> No lag on local input</div>
+<div> <strong> Cons:</strong><br /> Prediction doesn't always work<br /> Correction is expensive<br />Visual glitches</div>
+<div> What can we do?</div>
+<div> <em>Local perception filters</em><br />Process input in order</div>
+<div> <strong>Local player: </strong> sooner<br /> <em>Remote player:</em> later</div>
+<div> Good filtering</div>
+<div data-bodyclass='player1'></div>
+<div data-bodyclass='player2'></div>
+<div> Bad filtering</div>
+<div data-bodyclass='player1hit'></div>
+<div data-bodyclass='player1miss'></div>
+<div> Ugly filtering</div>
+<div data-bodyclass='consistent'></div>
+<div data-bodyclass='inconsistent'></div>
+<div><em>Cheating the system</em></div>
+<div>Players <strong>defer actions</strong> by artifical lag</div>
+<div>Gives advantange by <em>increasing reaction time</em></div>
+<div> What does this <strong>look like</strong>?
+<div data-bodyclass='bullet-time'> <em> Bullet Time</em></div>
+<div><a href='https://github.com/jrzimmerman/lpf-ctf'>Demo</a></div>
+<div>Thanks! <br><a href='https://twitter.com/justzimmerman'>@justzimmerman</a> | justin.richard.zimmerman@gmail.com</div>
+
+</body>
+</html>
