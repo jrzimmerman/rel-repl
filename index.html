@@ -139,7 +139,7 @@
 <div> Other problems: <em>Bandwidth</em>, <strong>Latency</strong></div>
 <div> Easy Solution? <br /> use <em>client-server</em> only one master replica</div>
 <div> Better Solution? <br /> use <em>peer-2-peer</em> systems</div>
-<div> Switching gears: <br /> Lets talk about syncronization</div>
+<div> Switching gears: <br /> Lets talk about causal consistency</div>
 <div> <strong>Lock Step Syncronization</strong> <br /> <em>strict linearization</em> <br />All players sync on each tick</div>
 <div> <em>Strongest</em> possible model of consistency</div>
 <div data-bodyclass='lockstep'></div>
@@ -158,15 +158,15 @@
 <div> <em> Pros:</em><br /> No lag on local input</div>
 <div> <strong> Cons:</strong><br /> Prediction doesn't always work<br /> Correction is expensive<br />Visual glitches</div>
 <div> What can we do?</div>
-<div> <em>Local perception filters</em><br />Process input in order</div>
+<div> <em>A third causal consistency</em><br />Process input in order</div>
 <div> <strong>Local player: </strong> sooner<br /> <em>Remote player:</em> later</div>
-<div> Good filtering</div>
+<div> Good causal consistency</div>
 <div data-bodyclass='player1'></div>
 <div data-bodyclass='player2'></div>
-<div> Bad filtering</div>
+<div> Bad causal consistency</div>
 <div data-bodyclass='player1hit'></div>
 <div data-bodyclass='player1miss'></div>
-<div> Ugly filtering</div>
+<div> Ugly causal consistency</div>
 <div data-bodyclass='consistent'></div>
 <div data-bodyclass='inconsistent'></div>
 <div><em>Cheating the system</em></div>
